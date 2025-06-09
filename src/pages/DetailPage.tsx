@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
 import { Button, Card, Col, Container, Row } from 'react-bootstrap';
 import type { Book } from '../data/Bookdata'
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { addItem } from '../data/store';
+import { useDispatch } from 'react-redux';
 
 interface LocationState {
     book : Book;
@@ -12,6 +14,8 @@ const DetailPage: React.FC = () => {
     const location = useLocation();
     const { state } = location as { state: LocationState };
     const book = state?.book;
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     
     useEffect(() => {
         const popupWindow = window.open('', '_blank', 'width=400, height=300');
@@ -65,7 +69,8 @@ const DetailPage: React.FC = () => {
                                 <Button
                                     variant = "primary"
                                     onClick = {() => {
-                                        console.log('클릭');
+                                        dispatch(addItem({id: book.id, name : book.title, price : book.price}));
+                                        navigate('/cart');
                                     }}>
                                         카트에 담기
                                     </Button>

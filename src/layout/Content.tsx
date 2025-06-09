@@ -31,6 +31,10 @@ const Content : React.FC = () => {
                             <PersonFill size = {20} className = "me-2" />
                             Login
                         </Nav.Link>
+                        <Nav.Link href = "/cart" className = "d-flexalign-items-center">
+                            <PersonFill size = {20} className = "me-2" />
+                            Cart
+                        </Nav.Link>
                     </Nav>
                 </Container>
             </Navbar>
@@ -44,6 +48,7 @@ const Content : React.FC = () => {
                 <Route path = "/detail/:id" element = {<DetailPage />} />
                 {/* <Route path = "/detail/:id" element = {<DetailPage2 />} /> */}
                 <Route path = "/login" element = {<LoginPage />} />
+                <Route path = "/cart" element = {<CartPage />} />
                 <Route path = "*" element = {'페이지가 존재하지 않습니다. 확인해주세요.'} />
             </Routes>
         </div>
